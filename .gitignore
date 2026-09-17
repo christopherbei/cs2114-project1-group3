@@ -11,7 +11,7 @@
 .mtj.tmp/
 
 # Eclipse workspace (local, machine-specific — do not share)
-.metadata/
+.metadata/*
 
 # Eclipse build output (if they use a bin/ folder)
 bin/
