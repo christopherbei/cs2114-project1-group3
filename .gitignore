@@ -10,6 +10,19 @@
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
+# Eclipse workspace (local, machine-specific — do not share)
+.metadata/
+
+# Eclipse build output (if they use a bin/ folder)
+bin/
+
+# VS Code (local settings; optional — see note below)
+.vscode/
+
+# OS junk
+.DS_Store
+Thumbs.db
+
 # Package Files #
 *.jar
 *.war
