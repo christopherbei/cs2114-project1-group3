@@ -28,12 +28,10 @@ public class Deck {
 			deckSize = 52;
 		}
 		
-		Random rand = new Random();
-		int random = rand.nextInt(deckSize - activeCards);
-				
-		Card card = deck.get(random);
-		deck.set(random, deck.get(deckSize - activeCards - 1));
-		deck.set(deckSize - activeCards - 1, card);
+		int random = (int) (Math.random() * (deckSize - activeCards));
+		
+		Card card = deck.remove(random);
+		deck.add(card);
 		
 		activeCards++;
 		
