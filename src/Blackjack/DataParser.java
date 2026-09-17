@@ -10,6 +10,10 @@ public class DataParser {
         propertiesInstance = new Properties();
     }
 
+    /** 
+     * @param fileName
+     * @throws IOException
+     */
     public void Save(String fileName) throws IOException {
         if (fileName == null || fileName == "") {
             return;
@@ -18,6 +22,10 @@ public class DataParser {
         propertiesInstance.store(new FileOutputStream(fileName), null);
     }
 
+    /** 
+     * @param fileName
+     * @throws IOException
+     */
     public void Load(String fileName) throws IOException {
         if (fileName == null || fileName == "") {
             return;
@@ -26,10 +34,19 @@ public class DataParser {
         propertiesInstance.load(new FileInputStream(fileName));
     }
 
+    /** 
+     * @param key
+     * @param value
+     */
     public void setProperty(String key, String value) {
         propertiesInstance.setProperty(key, value);
     }
 
+    /** 
+     * @param key
+     * @param fallback
+     * @return String
+     */
     public String getProperty(String key, String fallback) {
         return propertiesInstance.getProperty(key, fallback);
     }
