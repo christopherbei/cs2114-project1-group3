@@ -14,24 +14,32 @@ public class DataParser {
      * @param fileName
      * @throws IOException
      */
-    public void Save(String fileName) throws IOException {
+    public void Save(String fileName) {
         if (fileName == null || fileName == "") {
             return;
         }
 
-        propertiesInstance.store(new FileOutputStream(fileName), null);
+        try {
+                propertiesInstance.store(new FileOutputStream(fileName), null);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /** 
      * @param fileName
      * @throws IOException
      */
-    public void Load(String fileName) throws IOException {
+    public void Load(String fileName) {
         if (fileName == null || fileName == "") {
             return;
         }
 
-        propertiesInstance.load(new FileInputStream(fileName));
+        try {
+            propertiesInstance.load(new FileInputStream(fileName));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /** 
