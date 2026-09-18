@@ -1,5 +1,6 @@
-# Compiled class file
+# Compiled class files (ignored in every directory)
 *.class
+**/*.class
 
 # Log file
 *.log
