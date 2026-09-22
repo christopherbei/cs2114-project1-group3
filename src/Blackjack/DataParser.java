@@ -59,6 +59,35 @@ public class DataParser {
     }
 
     /**
+     * Checks whether a save file with the given name can be opened for reading.
+     * <p>
+     * Returns {@code false} if {@code fileName} is {@code null} or empty, or if
+     * the file does not exist or cannot be opened. Does not modify any
+     * properties stored in this parser.
+     * </p>
+     *
+     * @param fileName
+     *            the path of the file to check; treated as missing when null
+     *            or empty
+     * @return {@code true} if the file exists and can be opened;
+     *         {@code false} otherwise
+     */
+    public boolean saveFileExists(String fileName) {
+        if (fileName == null || fileName == "") {
+            return false;
+        }
+
+        try {
+            // if an exception is thrown, the file doesn't exist, so return false.
+            FileInputStream fileInputStream = new FileInputStream(fileName);
+            fileInputStream.close();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    /**
      * Loads properties from the default save file
      * {@code BlackjackGameSave.IDONTKNOWWHATTOPUTHERE}.
      */
