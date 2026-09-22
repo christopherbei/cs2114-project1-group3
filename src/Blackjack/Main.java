@@ -8,6 +8,7 @@ public class Main {
 		DataParser parser = new DataParser();
 		BlackjackGame game = new BlackjackGame();
 
+		// Breaking this loop will result in immidiate termination of the program and is the intended way to exit the game.
 		while (true) {
 			
 		}
