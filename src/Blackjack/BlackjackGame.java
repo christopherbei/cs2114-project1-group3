@@ -10,28 +10,15 @@ public class BlackjackGame
     private Player player;
     private Dealer dealer;
 
-    public BlackjackGame()
+    public BlackjackGame(Player player, Dealer dealer)
     {
         input = new Scanner(System.in);
         currentBid = 1000;
 
         deck = new Deck();
-        player = new Player();
-        dealer = new Dealer();
+        this.player = player;
+        this.dealer = dealer;
     }
-
-
-    public void runCommand(String action)
-    {
-        // unused
-    }
-
-
-    public void pauseConsole(double duration)
-    {
-        // unused
-    }
-
 
     public String handleInput()
     {
@@ -61,6 +48,17 @@ public class BlackjackGame
                     System.out.println("invalid input, try again: ");
             }
         }
+    }
+    
+    public void runCommand(String action)
+    {
+        // unused
+    }
+
+
+    public void pauseConsole(double duration)
+    {
+        // unused
     }
 
 }
