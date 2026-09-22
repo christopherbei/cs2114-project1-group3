@@ -36,7 +36,6 @@ public class BlackjackGame
     public String handleInput()
     {
         boolean complete = false;
-        String validActions = "";
         
         System.out.println("please enter your action: ");
         while (!complete)
@@ -64,6 +63,4 @@ public class BlackjackGame
         }
     }
 
-
-    handleInput();
 }
