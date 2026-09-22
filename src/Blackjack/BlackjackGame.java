@@ -5,6 +5,7 @@ public class BlackjackGame
 {
     private Scanner input;
     private int currentBid;
+    private boolean inGame;
 
     private Deck deck;
     private Player player;
@@ -14,6 +15,7 @@ public class BlackjackGame
     {
         input = new Scanner(System.in);
         currentBid = 1000;
+        inGame = false;
 
         deck = new Deck();
         this.player = player;
@@ -24,29 +26,36 @@ public class BlackjackGame
     public String handleInput()
     {
         boolean complete = false;
-
-        System.out.println("please enter your action: ");
+        
+        if (inGame) {
+            System.out.println("please enter your action (hit|stand): ");
+        }else {
+            System.out.println("please enter your bid: ");
+        }
+        
         while (!complete)
         {
             String action = input.nextLine();
             action = action.toLowerCase();
-
-            switch (action)
-            {
-                case "hit":
-                    player.addCard(deck.remove());
-                    complete = true;
-                    break;
-                case "stand":
-                    // implement
-                    complete = true;
-                    break;
-                case "stop":
-                    // implement
-                    complete = true;
-                    break;
-                default:
-                    System.out.println("invalid input, try again: ");
+            if (inGame) {
+                // check bid amount
+            }else {
+                switch (action)
+                {
+                    case "hit":
+                        player.addCard(deck.remove());
+                        complete = true;
+                        break;
+                    case "stand":
+                        // implement
+                        complete = true;
+                        break;
+                    case "stop":
+                        // implement
+                        complete = true;
+                        break;
+                    default:
+                        System.out.println("invalid input, try again: ");
             }
         }
     }
