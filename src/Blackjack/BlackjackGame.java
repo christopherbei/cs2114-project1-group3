@@ -20,16 +20,17 @@ public class BlackjackGame
         this.dealer = dealer;
     }
 
+
     public String handleInput()
     {
         boolean complete = false;
-        
+
         System.out.println("please enter your action: ");
         while (!complete)
         {
             String action = input.nextLine();
             action = action.toLowerCase();
-            
+
             switch (action)
             {
                 case "hit":
@@ -49,7 +50,8 @@ public class BlackjackGame
             }
         }
     }
-    
+
+
     public void runCommand(String action)
     {
         // unused
