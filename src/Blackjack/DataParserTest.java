@@ -8,7 +8,7 @@ import org.junit.Test;
 /**
  * Tests for {@link DataParser}.
  *
- * @author Group 3
+ * @author Isaac Tsung
  * @version 1.0
  */
 public class DataParserTest {
