@@ -56,9 +56,13 @@ public class BlackjackGame
     }
 
 
-    public void pauseConsole(double duration)
+    public void pauseConsole(long duration)
     {
-        // unused
+        try {
+            Thread.sleep(duration);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }
