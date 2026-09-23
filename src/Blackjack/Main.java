@@ -4,10 +4,10 @@ public class Main {
 	public static void main(String[] args) {
 		// Initialize the game components.
 		// Note: this could be simplified to BlackjackGame game = new BlackjackGame(new Player(), new Dealer(), new DataParser());
-		Player player = new Player();
+		// Player player = new Player();
 		Dealer dealer = new Dealer();
 		DataParser parser = new DataParser();
-		BlackjackGame game = new BlackjackGame(player, dealer, parser);
+		BlackjackGame game = new BlackjackGame(null, dealer, parser);
 
 		// When the game is first started, a title screen is displayed in an introduction sequence.
 		System.out.println("==================================================================");
@@ -41,7 +41,8 @@ public class Main {
 
 		// Breaking this loop will result in immidiate termination of the program and is the intended way to exit the game.
 		while (true) {
-			
+			game.handleInput(BlackjackGame.GameStates.BETTING);
+
 		}
 	}
 
