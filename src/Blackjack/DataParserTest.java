@@ -1,5 +1,8 @@
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -7,7 +10,7 @@ import org.junit.Test;
 /**
  * Tests for {@link DataParser}.
  *
- * @author Group 3
+ * @author Isaac Tsung
  * @version 1.0
  */
 public class DataParserTest {
@@ -145,5 +148,38 @@ public class DataParserTest {
     @Test
     public void testGetPropertyNullFallback() {
         assertNull(parser.getProperty("I don't exist", null));
+    }
+
+
+    /**
+     * Verifies that saveFileExists returns true for a file that was saved and
+     * false for a file that does not exist.
+     */
+    @Test
+    public void testSaveFileExists() {
+        parser.setProperty("key", "value");
+        parser.save("testSaveFileExists.txt");
+
+        assertTrue(parser.saveFileExists("testSaveFileExists.txt"));
+        assertFalse(parser.saveFileExists(
+            "this-file-should-not-exist-12345.properties"));
+    }
+
+
+    /**
+     * Verifies that saveFileExists returns false for a null file name.
+     */
+    @Test
+    public void testSaveFileExistsNullFileName() {
+        assertFalse(parser.saveFileExists(null));
+    }
+
+
+    /**
+     * Verifies that saveFileExists returns false for an empty file name.
+     */
+    @Test
+    public void testSaveFileExistsEmptyFileName() {
+        assertFalse(parser.saveFileExists(""));
     }
 }

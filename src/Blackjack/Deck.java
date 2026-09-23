@@ -36,7 +36,7 @@ public class Deck
         {
             for (int j = 0; j < NAMES.length; j++)
             {
-                deck.add(new Card(SUITS[i], NAMES[j], VALUES[i]));
+                deck.add(new Card(SUITS[i], NAMES[j], VALUES[j]));
             }
         }
     }
