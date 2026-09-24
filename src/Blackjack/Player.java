@@ -69,4 +69,71 @@ public class Player
 
 
     /**
- 
+      * @param balance sets the balance to the int parameter
+     */
+    public void setBalance(int balance)
+    {
+        this.balance = balance;
+    }
+
+
+    /**
+     * @return name in the form of a string
+     */
+    public String getName()
+    {
+        return name;
+    }
+
+
+    /**
+     * @param name
+     *            in the form of a string, sets the name
+     */
+    public void setName(String name)
+    {
+        this.name = name;
+    }
+
+
+    /**
+     * @return true if player busted and false if not
+     */
+    public boolean busted()
+    {
+        return playerHand.totalValue() > 21;
+    }
+
+
+    /**
+     * @return the ArrayList of the hand object created in the player class
+     */
+    public Hand getHand()
+    {
+        return playerHand;
+    }
+
+
+    /**
+     * @return the cards in the players hand in the form of a string
+     */
+    @Override
+    public String toString()
+    {
+        String result = "Player:" + "/n";
+        result += playerHand.toString();
+        return result;
+    }
+
+
+    /**
+     * @param card
+     *            to be added to the player hand
+     */
+    public void addCard(Card card)
+    {
+        playerHand.addCard(card);
+        System.out.println(this.toString());
+    }
+
+}

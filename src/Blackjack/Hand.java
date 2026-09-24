@@ -28,6 +28,7 @@ public class Hand
         hand.add(card);
     }
     
+    
     /**
      * @return ArrayList of the hand object
      */
@@ -88,4 +89,13 @@ public class Hand
     @Override
     public String toString()
     {
-        String 
+        String         String result = "";
+
+        for (Card card : hand)
+        {
+            result += card + "\n";
+        }
+
+        return result;
+    }
+}
