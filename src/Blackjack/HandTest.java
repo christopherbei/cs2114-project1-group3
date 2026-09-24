@@ -21,18 +21,26 @@ public class HandTest
 
 
     /**
-     * Checks the add card and total value methods for all branches
+     * Checks the add card, total value, and size methods for all branches
      */
     @Test
-    public void testTotalValue()
+    public void testAddCard()
     {
-        Card card = new Card("Spade", "Eight", 8);
-
-        hand.addCard(card);
+        hand.addCard(new Card("Spade", "Eight", 8));
 
         assertEquals(8, hand.totalValue());
+        assertEquals(1, hand.size());
         
-        // a few more branches to test here
+        hand.addCard(new Card("Spade", "Ten", 10));
+        hand.addCard(new Card("Spade", "Ace", 11));
+        
+        assertEquals(19, hand.totalValue());
+        assertEquals(3, hand.size());
+        
+        hand.clear();
+        
+        assertEquals(0, hand.totalValue());
+        assertEquals(0, hand.size());
     }
 
 
@@ -42,6 +50,12 @@ public class HandTest
     @Test
     public void testToString()
     {
-        assertTrue(true);
+        Card card1 = new Card("Spade", "King", 10);
+        Card card2 = new Card("Heart", "Nine", 9);
+        
+        hand.addCard(card1);
+        hand.addCard(card2);
+        
+        assertEquals(card1.toString() + "\n" + card2.toString() + "\n", hand.toString());
     }
 }
