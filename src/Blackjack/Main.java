@@ -151,6 +151,7 @@ public class Main {
 				else {
 					System.out.println("It's a tie.");
 				}
+				game.runCommand("pause");
 			}
 
 			System.out.println("Your balance is now: " + player.getBalance());
