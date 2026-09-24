@@ -33,6 +33,14 @@ public class Dealer
         System.out.println(this.toString());
 
     }
+    
+    /**
+     * @return the ArrayList of the hand object created in the Dealer class.
+     */
+    public Hand getHand()
+    {
+        return dealerHand;
+    }
 
 
     /**

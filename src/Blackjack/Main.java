@@ -79,26 +79,96 @@ public class Main {
 			System.out.println(); // 2 blank lines
 			System.out.println();
 
-			System.out.println("Dealer's drawn cars are as follows: ");
+			System.out.println("Dealer's drawn cards are as follows: ");
 			dealer.addCard(deck.remove());
 			dealer.addCard(deck.remove());
+			game.pauseConsole(1000);
 
-			if (dealer.busted()) {
-				System.out.println("Dealer busted. Player wins.");
-				player.setBalance(player.getBalance() + player.getBid());
-				player.setBid(0);
-				game.pauseConsole(2000);
-			} else if (player.busted()) {
-				System.out.println("Dealer busted. Player wins.");
-				player.setBalance(player.getBalance() - player.getBid());
-				player.setBid(0);
-				game.pauseConsole(2000);
+			// Player's turn: hit, stand, or quit.
+			boolean playerBusted = false;
+			boolean quitRound = false;
+
+			while (true) {
+				System.out.println("Enter your action (hit|stand|quit): ");
+				String action = game.handleInput(BlackjackGame.GameStates.PLAYING);
+
+				if (action.equals("quit")) {
+					quitRound = true;
+					break;
+				}
+				else if (action.equals("hit")) {
+					player.addCard(deck.remove());
+					if (player.busted()) {
+						System.out.println("You busted!");
+						playerBusted = true;
+						break;
+					}
+				}
+				else {
+					// stand
+					break;
+				}
 			}
 
+			if (quitRound) {
+				// Balance is kept; the current bet is forfeited per the intro text.
+				parser.setProperty("balance", Integer.toString(player.getBalance()));
+				parser.setProperty("name", player.getName());
+				parser.save();
+				System.out.println("Balance saved. Goodbye!");
+				break;
+			}
+
+			if (playerBusted) {
+				System.out.println("Dealer wins.");
+				player.setBalance(player.getBalance() - player.getBid());
+			}
+			else {
+				// Dealer's turn: reveal hole card, then draw until 17 or higher.
+				System.out.println();
+				System.out.println("Dealer reveals their hand:");
+				System.out.println(dealer.toString());
+				game.pauseConsole(1000);
+
+				while (dealer.getHand().totalValue() < 17) {
+					System.out.println("Dealer hits...");
+					game.pauseConsole(750);
+					dealer.addCard(deck.remove());
+				}
+
+				if (dealer.busted()) {
+					System.out.println("Dealer busted. You win!");
+					player.setBalance(player.getBalance() + player.getBid());
+				}
+				else if (player.getHand().totalValue() > dealer.getHand().totalValue()) {
+					System.out.println("You win!");
+					player.setBalance(player.getBalance() + player.getBid());
+				}
+				else if (player.getHand().totalValue() < dealer.getHand().totalValue()) {
+					System.out.println("Dealer wins.");
+					player.setBalance(player.getBalance() - player.getBid());
+				}
+				else {
+					System.out.println("It's a tie.");
+				}
+			}
+
+			System.out.println("Your balance is now: " + player.getBalance());
+			player.setBid(0);
+			player.getHand().clear();
+			dealer.getHand().clear();
+			game.pauseConsole(2000);
+
 			parser.setProperty("balance", Integer.toString(player.getBalance()));
+			parser.setProperty("name", player.getName());
 			parser.save();
 			deck = new Deck();
 			game.runCommand("cls");
+
+			if (player.getBalance() <= 0) {
+				System.out.println("You're out of money! Game over.");
+				break;
+			}
 
 		}
 	}

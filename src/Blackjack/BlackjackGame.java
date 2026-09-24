@@ -107,8 +107,8 @@ public class BlackjackGame {
      * <li>{@link GameStates#BETTING} — requires a positive integer less than
      * or equal to the player's balance; stores the bet with
      * {@link Player#setBid(int)}.</li>
-     * <li>{@link GameStates#PLAYING} — currently returns the raw input
-     * (hit/stand logic not yet implemented).</li>
+     * <li>{@link GameStates#PLAYING} — accepts {@code hit}, {@code stand}, or
+     * {@code quit} (case-insensitive) and returns the normalized action.</li>
      * </ul>
      * Invalid input for a phase re-prompts by calling this method again until
      * a valid value is obtained.
@@ -203,7 +203,14 @@ public class BlackjackGame {
                 break;
 
             case PLAYING:
-                
+                userInput = userInput.toLowerCase().trim();
+                if (!userInput.equals("hit") && !userInput.equals("stand")
+                    && !userInput.equals("quit"))
+                {
+                    System.out.println(
+                        "Invalid input, please enter hit, stand, or quit:");
+                    userInput = handleInput(GameStates.PLAYING);
+                }
                 break;
 
             default:
