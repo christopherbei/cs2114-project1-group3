@@ -71,10 +71,35 @@ public class Main {
 			
 			game.runCommand("cls");
 			// Now the round actually starts- both the player and dealer each draw 2 initial cards.
+			System.out.println("Player's drawn cards are as follows: ");
 			player.addCard(deck.remove());
 			player.addCard(deck.remove());
+			game.pauseConsole(1000);
+
+			System.out.println(); // 2 blank lines
+			System.out.println();
+
+			System.out.println("Dealer's drawn cars are as follows: ");
 			dealer.addCard(deck.remove());
 			dealer.addCard(deck.remove());
+
+			if (dealer.busted()) {
+				System.out.println("Dealer busted. Player wins.");
+				player.setBalance(player.getBalance() + player.getBid());
+				player.setBid(0);
+				game.pauseConsole(2000);
+			} else if (player.busted()) {
+				System.out.println("Dealer busted. Player wins.");
+				player.setBalance(player.getBalance() - player.getBid());
+				player.setBid(0);
+				game.pauseConsole(2000);
+			}
+
+			parser.setProperty("balance", Integer.toString(player.getBalance()));
+			parser.save();
+			deck = new Deck();
+			game.runCommand("cls");
+
 		}
 	}
 

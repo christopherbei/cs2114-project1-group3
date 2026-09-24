@@ -92,47 +92,6 @@ public class BlackjackGame {
         this.parser = parser;
     }
 
-    /*
-     * public String handleInput()
-     * {
-     * 
-     * boolean complete = false;
-     * 
-     * if (inGame) {
-     * System.out.println("please enter your action (hit|stand): ");
-     * }else {
-     * System.out.println("please enter your bid: ");
-     * }
-     * 
-     * while (!complete)
-     * {
-     * String action = input.nextLine();
-     * action = action.toLowerCase();
-     * if (inGame) {
-     * // check bid amount
-     * }else {
-     * switch (action)
-     * {
-     * case "hit":
-     * player.addCard(deck.remove());
-     * complete = true;
-     * break;
-     * case "stand":
-     * // implement
-     * complete = true;
-     * break;
-     * case "stop":
-     * // implement
-     * complete = true;
-     * break;
-     * default:
-     * System.out.println("invalid input, try again: ");
-     * }
-     * }
-     * }
-     * }
-     */
-
     /**
      * Reads one line from the console and processes it for the given game
      * phase.
@@ -244,7 +203,7 @@ public class BlackjackGame {
                 break;
 
             case PLAYING:
-                // implement
+                
                 break;
 
             default:
