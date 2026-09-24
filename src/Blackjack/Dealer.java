@@ -17,4 +17,46 @@ public class Dealer
      * creates the dealer object and dealerHand object
      */
     public Dealer()
-    
+    {
+        dealerHand = new Hand();
+    }
+
+
+    /**
+     * @param card
+     *            to be added to dealers hand
+     */
+    public void addCard(Card card)
+    {
+
+        dealerHand.addCard(card);
+        System.out.println(this.toString());
+
+    }
+
+
+    /**
+     * @return true if dealer busted and false if not
+     */
+    public boolean busted()
+    {
+        return dealerHand.totalValue() > 21;
+    }
+
+
+    @Override
+    public String toString()
+    {
+        String result = "Dealer:" + "/n";
+        if (dealerHand.size() == 2)
+        {
+            result += dealerHand.getCards().get(0) + "/n";
+            result += "*";
+        }
+        else
+        {
+            result += dealerHand.toString();
+        }
+        return result;
+    }
+}
