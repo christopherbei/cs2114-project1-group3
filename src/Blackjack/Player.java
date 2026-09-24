@@ -22,6 +22,7 @@ public class Player
         this(1000);
     }
 
+
     public Player(int balance)
     {
         playerHand = new Hand();
@@ -30,12 +31,15 @@ public class Player
         this.bid = 0;
     }
 
+
     public int getBid()
     {
         return bid;
     }
 
-    public void setBid(int bid) {
+
+    public void setBid(int bid)
+    {
         this.bid = bid;
     }
 
@@ -70,10 +74,24 @@ public class Player
     }
 
 
+    public Hand getHand()
+    {
+        return playerHand;
+    }
+
+
+    public String toString()
+    {
+        String result = "Player:" + "/n";
+        result += playerHand.toString();
+        return result;
+    }
+
+
     public void addCard(Card card)
     {
         playerHand.addCard(card);
-        System.out.println(playerHand.toString());
+        System.out.println(this.toString());
     }
 
 }

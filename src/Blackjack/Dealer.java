@@ -4,7 +4,6 @@ public class Dealer
 {
     private Hand dealerHand;
 
-
     public Dealer()
     {
         dealerHand = new Hand();
@@ -14,17 +13,25 @@ public class Dealer
     public void addCard(Card card)
     {
         dealerHand.addCard(card);
-        if (dealerHand.size() == 2) {
-            System.out.println("*");
-        }
-        else {
-            System.out.println(dealerHand.toString());
-        }
+        System.out.println(this.toString());
     }
 
 
     public boolean busted()
     {
         return dealerHand.totalValue() > 21;
+    }
+    
+    
+    public String toString() {
+        String result = "Dealer:" + "/n";
+        if (dealerHand.size() ==2) {
+            result += dealerHand.getCards().get(0) + "/n";
+            result += "*";
+        }
+        else {
+            result += dealerHand.toString();
+        }
+        return result;
     }
 }

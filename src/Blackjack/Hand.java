@@ -27,6 +27,13 @@ public class Hand
     {
         hand.add(card);
     }
+    
+    /**
+     * @return ArrayList of the hand object
+     */
+    public ArrayList<Card> getCards() {
+        return hand;
+    }
 
 
     /**
