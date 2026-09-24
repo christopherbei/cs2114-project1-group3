@@ -82,7 +82,7 @@ public class Main {
 			System.out.println("Dealer's drawn cards are as follows: ");
 			dealer.addCard(deck.remove());
 			dealer.addCard(deck.remove());
-			game.pauseConsole(1000);	
+			game.pauseConsole(1000);
 
 			// Player's turn: hit, stand, or quit.
 			boolean playerBusted = false;
