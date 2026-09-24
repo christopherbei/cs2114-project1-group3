@@ -12,7 +12,7 @@ public class Hand
     private ArrayList<Card> hand;
 
     /**
-     * 
+     * Constructor for a new hand object
      */
     public Hand()
     {
@@ -21,17 +21,19 @@ public class Hand
 
 
     /**
-     * @param card
+     * @param card to add
      */
     public void addCard(Card card)
     {
         hand.add(card);
     }
-    
+
+
     /**
      * @return ArrayList of the hand object
      */
-    public ArrayList<Card> getCards() {
+    public ArrayList<Card> getCards()
+    {
         return hand;
     }
 
@@ -73,8 +75,8 @@ public class Hand
     }
 
 
-    /** 
-     * 
+    /**
+     * resets entire hand
      */
     public void clear()
     {
