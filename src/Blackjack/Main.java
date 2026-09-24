@@ -67,7 +67,7 @@ public class Main {
 
 			System.out.println("Bid placed. Cards will now be drawn.");
 			game.pauseConsole(1500);
-			// By this point in exectuion, a valid bid has been made and stored in BlackjackGame.
+			// By this point in execution, a valid bid has been made and stored in BlackjackGame.
 			
 			game.runCommand("cls");
 			// Now the round actually starts- both the player and dealer each draw 2 initial cards.
