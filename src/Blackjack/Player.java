@@ -17,12 +17,20 @@ public class Player
     private String name;
     private Hand playerHand;
 
+    /**
+     * Creates a Player object with a default balance of 1000
+     */
     public Player()
     {
         this(1000);
     }
 
 
+    /**
+     * @param balance
+     *            creates a player object and sets the balance equal to the int
+     *            parameter
+     */
     public Player(int balance)
     {
         playerHand = new Hand();
@@ -32,66 +40,33 @@ public class Player
     }
 
 
+    /**
+     * @return returns the bid in an int
+     */
     public int getBid()
     {
         return bid;
     }
 
 
+    /**
+     * @param bid
+     *            sets the bid to the int parameter
+     */
     public void setBid(int bid)
     {
         this.bid = bid;
     }
 
 
+    /**
+     * @return the balance in the form of an int
+     */
     public int getBalance()
     {
         return balance;
     }
 
 
-    public void setBalance(int balance)
-    {
-        this.balance = balance;
-    }
-
-
-    public String getName()
-    {
-        return name;
-    }
-
-
-    public void setName(String name)
-    {
-        this.name = name;
-    }
-
-
-    public boolean busted()
-    {
-        return playerHand.totalValue() > 21;
-    }
-
-
-    public Hand getHand()
-    {
-        return playerHand;
-    }
-
-
-    public String toString()
-    {
-        String result = "Player:" + "/n";
-        result += playerHand.toString();
-        return result;
-    }
-
-
-    public void addCard(Card card)
-    {
-        playerHand.addCard(card);
-        System.out.println(this.toString());
-    }
-
-}
+    /**
+ 
