@@ -89,7 +89,7 @@ public class Hand
     @Override
     public String toString()
     {
-        String         String result = "";
+        String result = "";
 
         for (Card card : hand)
         {

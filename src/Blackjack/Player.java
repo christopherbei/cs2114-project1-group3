@@ -69,7 +69,7 @@ public class Player
 
 
     /**
-      * @param balance sets the balance to the int parameter
+     * @param balance sets the balance to the int parameter
      */
     public void setBalance(int balance)
     {
