@@ -4,6 +4,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		// Initialize the game components.
+		Deck deck = new Deck();
 		Player player = new Player();
 		Dealer dealer = new Dealer();
 		DataParser parser = new DataParser();
@@ -18,6 +19,7 @@ public class Main {
 						" |______  /____(____  /\\___  >__|_ \\/\\__|  (____  /\\___  >__|_ \\\r\n" + //
 						"        \\/          \\/     \\/     \\/\\______|    \\/     \\/     \\/");
 		System.out.println("==================================================================");
+		game.pauseConsole(2000);
 		game.runCommand("pause"); // Wait for input before continuing.
 		game.runCommand("cls"); // Clear the console to prepare for the next screen.
 		System.out.println("Welcome to Blackjack! The goal of the game is to get as close to 21 as possible without going over.");
@@ -39,7 +41,7 @@ public class Main {
 		{
 			System.out.println("No save file was found, creating a new save...");
 			game.pauseConsole(1000);
-			game.runCommand("cls");
+			game.runCommand("cls"); // clear the console
 			System.out.println("Enter player name: ");
 			String chosenName = game.handleInput(BlackjackGame.GameStates.SETTINGNAME);
 			parser.setProperty("balance", "1000"); // Default balance is 1000.
@@ -55,14 +57,26 @@ public class Main {
 		player.setBalance(Integer.parseInt(parser.getProperty("balance", "1000")));
 		player.setName(parser.getProperty("name", "Player"));
 
-		// Breaking this loop will result in immidiate termination of the program and is the intended way to exit the game.
+		// Breaking this loop will result in immidiate termination of the program.
 		while (true) {
 			System.out.println("Starting a new round...");
 			game.pauseConsole(2000);
 			game.runCommand("cls");
+			System.out.println("Player balance: " + player.getBalance());
 			System.out.println("Place your bet, " + player.getName());
 			game.handleInput(BlackjackGame.GameStates.BETTING);
+			game.pauseConsole(1000);
 
+			System.out.println("Bid placed. Cards will now be drawn.");
+			game.pauseConsole(1500);
+			// By this point in exectuion, a valid bid has been made and stored in BlackjackGame.
+			
+			game.runCommand("cls");
+			// Now the round actually starts- both the player and dealer each draw 2 initial cards.
+			player.addCard(deck.remove());
+			player.addCard(deck.remove());
+			dealer.addCard(deck.remove());
+			dealer.addCard(deck.remove());
 		}
 	}
 

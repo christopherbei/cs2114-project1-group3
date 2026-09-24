@@ -3,8 +3,6 @@ import java.util.Scanner;
 
 public class BlackjackGame {
     private Scanner input;
-    private int currentBid;
-    private boolean inGame;
     private Deck deck;
     private Player player;
     private Dealer dealer;
@@ -32,8 +30,6 @@ public class BlackjackGame {
 
     public BlackjackGame(Player player, Dealer dealer, DataParser parser) {
         input = new Scanner(System.in);
-        currentBid = 1000;
-        inGame = false;
 
         deck = new Deck();
         this.player = player;
@@ -130,7 +126,37 @@ public class BlackjackGame {
                 break;
 
             case BETTING:
-                // Implement
+                // Validate that the bet is a clean int, then check it against the player's balance.
+                int bet;
+                try {
+                    bet = Integer.parseInt(userInput.trim());
+                } catch (NumberFormatException e) {
+                    System.out.println("Player balance: " + player.getBalance());
+                    System.out.println("Please enter a valid whole number:");
+                    userInput = handleInput(GameStates.BETTING);
+                    break;
+                }
+
+                if (bet <= 0) {
+                    System.out.println("Player balance: " + player.getBalance());
+                    System.out.println("Bet must be greater than 0:");
+                    userInput = handleInput(GameStates.BETTING);
+                    break;
+                }
+
+                if (bet > player.getBalance()) {
+                    System.out.println("You cannot bet more than you have!");
+                    System.out.println("Player balance: " + player.getBalance());
+                    System.out.println("Place your bet, " + player.getName() + ":");
+                    userInput = handleInput(GameStates.BETTING);
+                    break;
+                }
+
+                if (bet == player.getBalance()) {
+                    System.out.println("Going all in!");
+                }
+
+                player.setBid(bet);
                 break;
 
             case PLAYING:

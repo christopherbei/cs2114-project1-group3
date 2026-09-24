@@ -1,8 +1,8 @@
-imporat java.util.*;
+import java.util.*;
 
 public class Dealer
 {
-    private Hand() dealerHand;
+    private Hand dealerHand;
 
 
     public Dealer()

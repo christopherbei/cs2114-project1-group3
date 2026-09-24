@@ -30,6 +30,15 @@ public class Hand
 
 
     /**
+     * @return number of cards in hand
+     */
+    public int size()
+    {
+        return hand.size();
+    }
+
+
+    /**
      * @return total value of cards in hand
      */
     public int totalValue()

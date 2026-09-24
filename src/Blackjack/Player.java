@@ -14,18 +14,53 @@ public class Player
 
     private int balance;
     private int bid;
+    private String name;
     private Hand playerHand;
+
+    public Player()
+    {
+        this(1000);
+    }
 
     public Player(int balance)
     {
         playerHand = new Hand();
         this.balance = balance;
+        this.name = "Player";
+        this.bid = 0;
+    }
+
+    public int getBid()
+    {
+        return bid;
+    }
+
+    public void setBid(int bid) {
+        this.bid = bid;
     }
 
 
     public int getBalance()
     {
         return balance;
+    }
+
+
+    public void setBalance(int balance)
+    {
+        this.balance = balance;
+    }
+
+
+    public String getName()
+    {
+        return name;
+    }
+
+
+    public void setName(String name)
+    {
+        this.name = name;
     }
 
 
