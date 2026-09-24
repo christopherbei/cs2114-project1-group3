@@ -121,8 +121,7 @@ public class Player
     @Override
     public String toString()
     {
-        String result = "Player:";
-        System.out.println();
+        String result = new String("");
         result += playerHand.toString();
         return result;
     }

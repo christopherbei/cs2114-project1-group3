@@ -47,12 +47,10 @@ public class Dealer
     @Override
     public String toString()
     {
-        String result = "Dealer:";
-        System.out.println();
+        String result = new String("");
         if (dealerHand.size() == 2)
         {
             result += dealerHand.getCards().get(0);
-            System.out.println();
             result += "*";
         }
         else
