@@ -14,6 +14,9 @@ public class CardTest
     private Card card;
     private Card cardTwo;
 
+    /**
+     * Sets up new cards for each test
+     */
     @Before
     public void setUp()
     {

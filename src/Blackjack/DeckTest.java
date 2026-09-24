@@ -13,6 +13,9 @@ public class DeckTest
 {
     private Deck deck;
 
+    /**
+     * Sets up a new deck for each test
+     */
     @Before
     public void setUp()
     {

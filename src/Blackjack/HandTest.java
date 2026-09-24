@@ -13,6 +13,9 @@ public class HandTest
 {
     private Hand hand;
 
+    /**
+     * Sets up a new hand for each test
+     */
     @Before
     public void setUp()
     {
@@ -30,15 +33,15 @@ public class HandTest
 
         assertEquals(8, hand.totalValue());
         assertEquals(1, hand.size());
-        
+
         hand.addCard(new Card("Spade", "Ten", 10));
         hand.addCard(new Card("Spade", "Ace", 11));
-        
+
         assertEquals(19, hand.totalValue());
         assertEquals(3, hand.size());
-        
+
         hand.clear();
-        
+
         assertEquals(0, hand.totalValue());
         assertEquals(0, hand.size());
     }
@@ -52,10 +55,12 @@ public class HandTest
     {
         Card card1 = new Card("Spade", "King", 10);
         Card card2 = new Card("Heart", "Nine", 9);
-        
+
         hand.addCard(card1);
         hand.addCard(card2);
-        
-        assertEquals(card1.toString() + "\n" + card2.toString() + "\n", hand.toString());
+
+        assertEquals(
+            card1.toString() + "\n" + card2.toString() + "\n",
+            hand.toString());
     }
 }
