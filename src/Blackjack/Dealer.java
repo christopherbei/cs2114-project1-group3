@@ -58,7 +58,6 @@ public class Dealer
         String result = new String("");
         if (dealerHand.size() == 2)
         {
-            result += dealerHand.getCards().get(0);
             result += "*";
         }
         else
