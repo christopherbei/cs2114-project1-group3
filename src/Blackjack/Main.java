@@ -65,7 +65,7 @@ public class Main {
 			game.handleInput(BlackjackGame.GameStates.BETTING);
 			game.pauseConsole(1000);
 
-			System.out.println("Bid placed. Cards will now be drawn.");
+			System.out.println("Bid placed. Cards will now be drawn." + "\n");
 			game.pauseConsole(1500);
 			// By this point in execution, a valid bid has been made and stored in BlackjackGame.
 			
@@ -153,7 +153,7 @@ public class Main {
 				}
 				game.runCommand("pause");
 			}
-
+			deck.turnOver();
 			System.out.println("Your balance is now: " + player.getBalance());
 			player.setBid(0);
 			player.getHand().clear();
@@ -163,7 +163,6 @@ public class Main {
 			parser.setProperty("balance", Integer.toString(player.getBalance()));
 			parser.setProperty("name", player.getName());
 			parser.save();
-			deck = new Deck();
 			game.runCommand("cls");
 
 			if (player.getBalance() <= 0) {

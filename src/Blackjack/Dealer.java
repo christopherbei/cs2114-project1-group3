@@ -32,7 +32,7 @@ public class Dealer
         dealerHand.addCard(card);
         if (dealerHand.size() <= 1)
         {
-            System.out.println(this.toString() + "Hole Card");
+            System.out.println(this.toString() + "Hole Card" + "\n" + "\n");
         }
         else if (dealerHand.size() > 2)
         {
