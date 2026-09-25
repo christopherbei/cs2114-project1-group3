@@ -30,10 +30,18 @@ public class Dealer
     {
 
         dealerHand.addCard(card);
-        System.out.println(this.toString());
+        if (dealerHand.size() <= 1)
+        {
+            System.out.println(this.toString() + "Hole Card");
+        }
+        else if (dealerHand.size() > 2)
+        {
+            System.out.println(this.toString());
+        }
 
     }
-    
+
+
     /**
      * @return the ArrayList of the hand object created in the Dealer class.
      */
@@ -56,14 +64,20 @@ public class Dealer
     public String toString()
     {
         String result = new String("");
-        if (dealerHand.size() == 2)
-        {
-            result += "*";
-        }
-        else
-        {
-            result += dealerHand.toString();
-        }
+
+        result += dealerHand.toString();
+
+        return result;
+    }
+
+
+    /**
+     * @return the dealers hand after the player stands
+     */
+    public String reveal()
+    {
+        String result = new String("");
+        result += dealerHand.toString();
         return result;
     }
 }

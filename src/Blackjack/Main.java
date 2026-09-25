@@ -76,8 +76,7 @@ public class Main {
 			player.addCard(deck.remove());
 			game.pauseConsole(1000);
 
-			System.out.println(); // 2 blank lines
-			System.out.println();
+			System.out.println(); // 1 blank line
 
 			System.out.println("Dealer's drawn cards are as follows: ");
 			dealer.addCard(deck.remove());
@@ -97,6 +96,7 @@ public class Main {
 					break;
 				}
 				else if (action.equals("hit")) {
+				    System.out.println("Player hits...");
 					player.addCard(deck.remove());
 					if (player.busted()) {
 						System.out.println("You busted!");
@@ -127,7 +127,7 @@ public class Main {
 				// Dealer's turn: reveal hole card, then draw until 17 or higher.
 				System.out.println();
 				System.out.println("Dealer reveals their hand:");
-				System.out.println(dealer.toString());
+				System.out.println(dealer.reveal());
 				game.pauseConsole(1000);
 
 				while (dealer.getHand().totalValue() < 17) {

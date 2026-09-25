@@ -251,7 +251,7 @@ public class BlackjackGame {
             // Waits for the process to finish it's command before continuing.
             newProcess.waitFor();
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
         }
     }
 

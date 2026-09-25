@@ -134,7 +134,14 @@ public class Player
     public void addCard(Card card)
     {
         playerHand.addCard(card);
-        System.out.println(this.toString());
+        if (playerHand.size() > 1)
+        {
+            System.out.println(this.toString());
+        }
+        else if (playerHand.size() > 2)
+        {
+            System.out.println("Player:" + this.toString());
+        }
     }
 
 }
