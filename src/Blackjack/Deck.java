@@ -21,6 +21,8 @@ public class Deck
     private int deckSize;
     // represents the number of cards currently in play
     private int activeCards;
+    // represents whether the deck was shuffled back to 52 cards
+    private boolean shuffled = false;
 
     private ArrayList<Card> deck;
 
@@ -52,6 +54,7 @@ public class Deck
         if (deckSize - activeCards == 0)
         {
             deckSize = 52;
+            shuffled = true;
         }
 
         // randomly picks a card based on the deck size and active cards
@@ -64,6 +67,25 @@ public class Deck
         activeCards++;
 
         return card;
+    }
+
+
+    /**
+     * @param shuffle
+     *            whether the deck has been shuffled
+     */
+    public void setShuffle(boolean shuffle)
+    {
+        shuffled = shuffle;
+    }
+
+
+    /**
+     * @return shuffled status
+     */
+    public boolean getShuffle()
+    {
+        return shuffled;
     }
 
 

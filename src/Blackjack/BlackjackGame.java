@@ -15,7 +15,8 @@ import java.util.Scanner;
  * @author Isaac Tsung
  * @version 23 Sep 2026
  */
-public class BlackjackGame {
+public class BlackjackGame
+{
     /**
      * Reads lines from standard input for {@link #handleInput(GameStates)}.
      */
@@ -40,12 +41,18 @@ public class BlackjackGame {
      * Loads and saves player data such as name and balance.
      */
     private DataParser parser;
+    /**
+     * true count for card counting
+     */
+    private int cardCount = 0;
+    private int holeCount = 0;
 
     /**
      * Phases of the game that decide how {@link #handleInput(GameStates)}
      * interprets the next line of player input.
      */
-    public enum GameStates {
+    public enum GameStates
+    {
         /**
          * Expects {@code y} or {@code n} to load an existing save or create a
          * new one. Preconditions: a save file already exists.
@@ -59,8 +66,8 @@ public class BlackjackGame {
         SETTINGNAME,
 
         /**
-         * Expects a positive whole-number bet that does not exceed the
-         * player's balance; stores the bet on the player when valid.
+         * Expects a positive whole-number bet that does not exceed the player's
+         * balance; stores the bet on the player when valid.
          */
         BETTING,
 
@@ -83,7 +90,8 @@ public class BlackjackGame {
      * @param parser
      *            the parser used to load and save game data
      */
-    public BlackjackGame(Player player, Dealer dealer, DataParser parser) {
+    public BlackjackGame(Player player, Dealer dealer, DataParser parser)
+    {
         input = new Scanner(System.in);
 
         deck = new Deck();
@@ -91,6 +99,7 @@ public class BlackjackGame {
         this.dealer = dealer;
         this.parser = parser;
     }
+
 
     /**
      * Reads one line from the console and processes it for the given game
@@ -102,65 +111,78 @@ public class BlackjackGame {
      * <li>{@link GameStates#LOADINGSAVE} — {@code y} loads the default save;
      * {@code n} prompts for a name and creates a new save; anything else
      * re-prompts.</li>
-     * <li>{@link GameStates#SETTINGNAME} — rejects empty names and names
-     * longer than 10 characters; returns the validated name.</li>
-     * <li>{@link GameStates#BETTING} — requires a positive integer less than
-     * or equal to the player's balance; stores the bet with
+     * <li>{@link GameStates#SETTINGNAME} — rejects empty names and names longer
+     * than 10 characters; returns the validated name.</li>
+     * <li>{@link GameStates#BETTING} — requires a positive integer less than or
+     * equal to the player's balance; stores the bet with
      * {@link Player#setBid(int)}.</li>
      * <li>{@link GameStates#PLAYING} — accepts {@code hit}, {@code stand}, or
      * {@code quit} (case-insensitive) and returns the normalized action.</li>
      * </ul>
-     * Invalid input for a phase re-prompts by calling this method again until
-     * a valid value is obtained.
+     * Invalid input for a phase re-prompts by calling this method again until a
+     * valid value is obtained.
      *
      * @param gameState
      *            the current phase that defines how input is validated
-     * @return the accepted input string for that phase (for example the
-     *         chosen name or bet amount as text)
+     * @return the accepted input string for that phase (for example the chosen
+     *             name or bet amount as text)
      * @throws IllegalArgumentException
      *             if {@code gameState} is not a recognized {@link GameStates}
      *             value
      */
-    public String handleInput(GameStates gameState) {
+    public String handleInput(GameStates gameState)
+    {
         // First we cache the user Input to be returned later.
         String userInput = input.nextLine();
 
-        switch (gameState) {
+        switch (gameState)
+        {
 
             // Preconditions for this branch: A save file exists.
             case LOADINGSAVE:
                 // Brief delay before responding to the user input.
                 pauseConsole(500);
 
-                if (userInput.equals("y")) {
+                if (userInput.equals("y"))
+                {
                     parser.load();
                     System.out.println("Save file loaded successfully.");
-                } else if (userInput.equals("n")) {
+                }
+                else if (userInput.equals("n"))
+                {
                     System.out.println("Creating a new save...");
                     pauseConsole(1000);
 
                     runCommand("cls");
                     System.out.println("Enter player name: ");
-                    String playerChosenName = handleInput(GameStates.SETTINGNAME);
+                    String playerChosenName =
+                        handleInput(GameStates.SETTINGNAME);
                     parser.setProperty("balance", "1000");
                     parser.setProperty("name", playerChosenName);
                     parser.save();
 
                     pauseConsole(500);
                     System.out.println("New save file created successfully.");
-                } else {
-                    System.out.println("Invalid input, please enter 'y' or 'n': ");
+                }
+                else
+                {
+                    System.out
+                        .println("Invalid input, please enter 'y' or 'n': ");
                     handleInput(gameState);
                 }
                 break;
 
             case SETTINGNAME:
-                if (userInput.length() > 10) {
+                if (userInput.length() > 10)
+                {
                     runCommand("cls");
-                    System.out.println("Player name must be 10 characters or less.");
+                    System.out
+                        .println("Player name must be 10 characters or less.");
                     System.out.println("Enter player name: ");
                     userInput = handleInput(GameStates.SETTINGNAME);
-                } else if (userInput.length() == 0) {
+                }
+                else if (userInput.length() == 0)
+                {
                     runCommand("cls");
                     System.out.println("Player name cannot be empty!");
                     System.out.println("Enter player name: ");
@@ -169,33 +191,44 @@ public class BlackjackGame {
                 break;
 
             case BETTING:
-                // Validate that the bet is a clean int, then check it against the player's balance.
+                // Validate that the bet is a clean int, then check it against
+                // the player's balance.
                 int bet;
-                try {
+                try
+                {
                     bet = Integer.parseInt(userInput.trim());
-                } catch (NumberFormatException e) {
-                    System.out.println("Player balance: " + player.getBalance());
+                }
+                catch (NumberFormatException e)
+                {
+                    System.out
+                        .println("Player balance: " + player.getBalance());
                     System.out.println("Please enter a valid whole number:");
                     userInput = handleInput(GameStates.BETTING);
                     break;
                 }
 
-                if (bet <= 0) {
-                    System.out.println("Player balance: " + player.getBalance());
+                if (bet <= 0)
+                {
+                    System.out
+                        .println("Player balance: " + player.getBalance());
                     System.out.println("Bet must be greater than 0:");
                     userInput = handleInput(GameStates.BETTING);
                     break;
                 }
 
-                if (bet > player.getBalance()) {
+                if (bet > player.getBalance())
+                {
                     System.out.println("You cannot bet more than you have!");
-                    System.out.println("Player balance: " + player.getBalance());
-                    System.out.println("Place your bet, " + player.getName() + ":");
+                    System.out
+                        .println("Player balance: " + player.getBalance());
+                    System.out
+                        .println("Place your bet, " + player.getName() + ":");
                     userInput = handleInput(GameStates.BETTING);
                     break;
                 }
 
-                if (bet == player.getBalance()) {
+                if (bet == player.getBalance())
+                {
                     System.out.println("Going all in!");
                 }
 
@@ -214,12 +247,15 @@ public class BlackjackGame {
                 break;
 
             default:
-                // as long as a GameState is passed to this method, this exception should never
+                // as long as a GameState is passed to this method, this
+                // exception should never
                 // be thrown.
-                throw new IllegalArgumentException("Invalid game state: " + gameState);
+                throw new IllegalArgumentException(
+                    "Invalid game state: " + gameState);
         }
         return userInput;
     }
+
 
     /**
      * Runs a Windows console command and waits for it to finish before
@@ -237,23 +273,106 @@ public class BlackjackGame {
      * @param action
      *            the command string passed to {@code cmd.exe /c}
      */
-    public void runCommand(String action) {
-        // Build a new cmd process with the given command, with /c closing the process
+    public void runCommand(String action)
+    {
+        // Build a new cmd process with the given command, with /c closing the
+        // process
         // after
         // the command is executed.
-        ProcessBuilder processBuilder = new ProcessBuilder("cmd.exe", "/c", action);
+        ProcessBuilder processBuilder =
+            new ProcessBuilder("cmd.exe", "/c", action);
         // Bind the new process' I/O streams to the current .jar java process'
         // streams. (Ensure they use the same console.)
         processBuilder = processBuilder.inheritIO();
         // Starting the process runs the command.
-        try {
+        try
+        {
             Process newProcess = processBuilder.start();
             // Waits for the process to finish it's command before continuing.
             newProcess.waitFor();
-        } catch (Exception e) {
+        }
+        catch (Exception e)
+        {
             // e.printStackTrace();
         }
     }
+
+
+    /**
+     * @param currentCard
+     *            to be counted
+     */
+    public void setCount(Card currentCard)
+    {
+        if (deck.getShuffle())
+        {
+            cardCount = 0;
+            deck.setShuffle(false);
+        }
+        if (currentCard.getValue() > 9)
+        {
+            cardCount--;
+        }
+        else if (currentCard.getValue() < 7)
+        {
+            cardCount++;
+        }
+    }
+
+
+    /**
+     * adds the hole count to card count
+     */
+    public void revealedCount()
+    {
+        cardCount += holeCount;
+        holeCount = 0;
+    }
+
+
+    /**
+     * @return cardCount
+     */
+    public int getCount()
+    {
+        return cardCount;
+    }
+
+
+    /**
+     * @param currentCard
+     *            to be counted in the hole
+     */
+    public void setHoleCount(Card currentCard)
+    {
+        if (currentCard.getValue() > 9)
+        {
+            holeCount--;
+        }
+        else if (currentCard.getValue() < 7)
+        {
+            holeCount++;
+        }
+    }
+
+
+    /**
+     * clears the hole count
+     */
+    public void clearHoleCount()
+    {
+        holeCount = 0;
+    }
+
+
+    /**
+     * @return holeCount
+     */
+    public int getHoleCount()
+    {
+        return holeCount;
+    }
+
 
     /**
      * Blocks the current thread for the given duration so console text can be
@@ -262,10 +381,14 @@ public class BlackjackGame {
      * @param duration
      *            pause length in milliseconds
      */
-    public void pauseConsole(long duration) {
-        try {
+    public void pauseConsole(long duration)
+    {
+        try
+        {
             Thread.sleep(duration);
-        } catch (Exception e) {
+        }
+        catch (Exception e)
+        {
             e.printStackTrace();
         }
     }
